@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Will you be mine?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -17,41 +17,34 @@
     h1 {
       color: #f48fb1;
       text-align: center;
-      margin-top: 30px;
-      font-size: 2.5rem;
+      margin: 20px 10px;
+      font-size: 2.2rem;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      padding: 50px 20px;
-      max-width: 1200px;
-      margin: auto;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      justify-items: center;
     }
 
     .card {
       width: 100%;
+      max-width: 280px;
       height: 350px;
-      perspective: 1500px;
-      margin: auto;
+      perspective: 1200px;
     }
 
     .card-inner {
       position: relative;
       width: 100%;
       height: 100%;
-      transition: transform 0.8s;
       transform-style: preserve-3d;
+      transition: transform 0.8s;
     }
 
-    /* Flip on hover (desktop) */
-    .card:hover .card-inner {
-      transform: rotateY(180deg);
-    }
-
-    /* Flip on tap (mobile) */
-    .card.flipped .card-inner {
+    .card-inner.flipped {
       transform: rotateY(180deg);
     }
 
@@ -59,55 +52,55 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 10px;
       backface-visibility: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-      box-sizing: border-box;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     .card-front {
-      background-size: cover;
-      background-position: center;
-      background-color: #f48fb1;
+      background: #f48fb1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .card-back {
-      background: rgba(250, 200, 215, 0.9);
+      background: rgba(250, 200, 215, 0.95);
       color: #fff;
       transform: rotateY(180deg);
-      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 20px;
-    }
-
-    .card:hover .card-front {
-      background-color: #f06292;
-      transform: scale(1.05);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
     }
 
     .question-container {
       text-align: center;
-      margin-top: 50px;
-      padding-bottom: 30px;
+      margin: 40px 10px;
     }
 
     .question-container h2 {
       color: #f48fb1;
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
 
     .button {
       background-color: #f48fb1;
       color: white;
       border: none;
-      padding: 15px 30px;
+      padding: 12px 24px;
       margin: 10px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -115,18 +108,41 @@
 
     .button:hover {
       background-color: #f06292;
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     .no-button {
       position: relative;
-      transition: all 0.5s ease-in-out;
-      margin-top: 20px;
       display: inline-block;
+      transition: left 0.4s ease-in-out;
     }
 
     .no-button.move-left {
-      left: -150px;
+      left: -120px;
+    }
+
+    .video-container {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .question-container h2 {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
@@ -135,50 +151,61 @@
   <h1>❤️ This is for my Pookie ❤️</h1>
 
   <div class="grid">
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/1.jpg');"></div>
-      <div class="card-back">Hiii My Cutie Kaleshi, I love you. Love you to the moon and back.</div>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/2.jpg');"></div>
-      <div class="card-back">I will love you for 4 days: Summer, Winter, Autumn and Spring 💌</div>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/3.jpg');"></div>
-      <div class="card-back">Maybe three days: Yesterday, Today, Tomorrow.</div>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/4.jpg');"></div>
-      <div class="card-back">How about two days: Day and Night</div>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/5.jpg');"></div>
-      <div class="card-back">Maybe every single day: Everyday</div>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/6.jpg');"></div>
-      <div class="card-back">The day I hugged you (26th April)... Ahhh... I forgot all my burdens 💕</div>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/7.jpg');"></div>
-      <div class="card-back">I love spending time with you. हमें आपसे बेइंतहा मोहब्बत हो गई है ||</div>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/8.jpg');"></div>
-      <div class="card-back">After death the brain replays the best 7 minutes... Will you be my 7 minutes?</div>
-    </div></div>
-
-    <div class="card"><div class="card-inner">
-      <div class="card-front" style="background-image: url('assets/9.jpg');"></div>
-      <div class="card-back">The love is knocking again... this time, with certainty and fear of losing you ✨</div>
-    </div></div>
+    <!-- All 9 cards -->
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/1.jpg" alt="1"></div>
+        <div class="card-back">Hiii My Cutie Kaleshi, I love you to the moon and back. I have written something for you.</div>
+      </div>
+    </div>
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/2.jpg" alt="2"></div>
+        <div class="card-back">I will love you for 4 days: Summer, Winter, Autumn and Spring 💌</div>
+      </div>
+    </div>
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/3.jpg" alt="3"></div>
+        <div class="card-back">Maybe three days: Yesterday, Today, Tomorrow.</div>
+      </div>
+    </div>
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/4.jpg" alt="4"></div>
+        <div class="card-back">How about two days: Day and Night</div>
+      </div>
+    </div>
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/5.jpg" alt="5"></div>
+        <div class="card-back">Maybe every single day: Everyday</div>
+      </div>
+    </div>
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/6.jpg" alt="6"></div>
+        <div class="card-back">The day I hugged you (26th April)... Ahhhh... my girl... for some moment... I forgot all my burdens 💕</div>
+      </div>
+    </div>
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/7.jpg" alt="7"></div>
+        <div class="card-back">I have started liking you. I love spending time with you.<br>हमें आपसे बेइंतहा मोहब्बत हो गई है ||</div>
+      </div>
+    </div>
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/8.jpg" alt="8"></div>
+        <div class="card-back">I've heard that after death, the brain lives for 7 minutes to replay best memories. Will you be my 7 minutes?</div>
+      </div>
+    </div>
+    <div class="card" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front"><img src="assets/9.jpg" alt="9"></div>
+        <div class="card-back">This is the answer to your reel... Love is knocking again. It's someone who fears losing you, is sure of you, and will hold on to you ✨</div>
+      </div>
+    </div>
   </div>
 
   <div class="question-container">
@@ -186,33 +213,38 @@
     <button class="button" onclick="showVideo()">Yes</button>
     <button class="button" onclick="showVideo()">Definitely Yes</button>
     <button class="button no-button" id="noButton"
-            onmouseover="moveNoButton(true)"
-            onmouseout="moveNoButton(false)">
-      No
-    </button>
+      onmouseover="moveNoButton(true)"
+      onmouseout="moveNoButton(false)">No</button>
+  </div>
+
+  <div class="video-container" id="videoContainer">
+    <video id="loveVideo" controls autoplay>
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
   </div>
 
   <script>
-    function showVideo() {
-      window.location.href = 'videoPage.html';
+    function flipCard(card) {
+      card.querySelector('.card-inner').classList.toggle('flipped');
     }
 
-    function moveNoButton(isHovered) {
-      const noButton = document.getElementById('noButton');
-      if (isHovered) {
-        noButton.classList.add('move-left');
+    function moveNoButton(hover) {
+      const btn = document.getElementById('noButton');
+      if (hover) {
+        btn.classList.add('move-left');
       } else {
-        noButton.classList.remove('move-left');
+        btn.classList.remove('move-left');
       }
     }
 
-    // Mobile: Flip on tap
-    document.querySelectorAll('.card').forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
-      });
-    });
+    function showVideo() {
+      const videoContainer = document.getElementById('videoContainer');
+      const video = document.getElementById('loveVideo');
+      videoContainer.style.display = 'flex';
+      video.play();
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
   </script>
-
 </body>
 </html>
