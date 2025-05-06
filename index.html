@@ -147,11 +147,12 @@
 </head>
 <body>
 
+  <!-- Background Music -->
+  <audio id="bgMusic" src="assets/love-song.mp3" loop preload="auto"></audio>
+
   <h1>❤️ This is for my Pookie ❤️</h1>
 
   <div class="grid">
-    <!-- 9 cards -->
-    <!-- Use your own image files in assets/ folder -->
     <script>
       const messages = [
         "Hiii My Cutie Kaleshi, I love you to the moon and back. I have written something for you.",
@@ -162,7 +163,7 @@
         "The day I hugged you (26th April)... Ahhhh... my girl... for some moment... I forgot all my burdens 💕",
         "I have started liking you. I love spending time with you.<br>हमें आपसे बेइंतहा मोहब्बत हो गई है ||",
         "I have heard that Human Brain lives for 7 more minutes after death to relive its best moments, will you be those 7 minutes??",
-        "This is the answer to your reel… Bhavuk is knocking on your heart, Nonu🐣 has a fear of loosing you, Sher is sure of you “YEAH I WILL ALWAYS BE LIKE THAT FOR MY ENTIRE LIFE and I will HOLD onto you<3 ✨”"
+        "This is the answer to your reel… Bhavuk is knocking on your heart, Nonu🐣 has a fear of losing you, Sher is sure of you “YEAH I WILL ALWAYS BE LIKE THAT FOR MY ENTIRE LIFE and I will HOLD onto you<3 ✨”"
       ];
 
       document.write([...Array(9)].map((_, i) => `
@@ -193,25 +194,38 @@
   </div>
 
   <script>
+    // Flip card
     function flipCard(card) {
       const inner = card.querySelector('.card-inner');
       inner.classList.toggle('flipped');
     }
 
+    // Move No button
     function moveNoButton(hover) {
       const btn = document.getElementById('noButton');
       if (hover) btn.classList.add('move-left');
       else btn.classList.remove('move-left');
     }
 
+    // Show video and stop music
     function showVideo() {
       const videoContainer = document.getElementById('videoContainer');
       const video = document.getElementById('loveVideo');
+      const music = document.getElementById('bgMusic');
+      music.pause();
       videoContainer.style.display = 'flex';
       video.load();
       video.play().catch(err => console.warn('Playback failed:', err));
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
+
+    // Auto-play music after first user click (required for autoplay)
+    document.addEventListener('click', function initMusic() {
+      const music = document.getElementById('bgMusic');
+      music.volume = 0.4;
+      music.play().catch(err => console.warn('Autoplay blocked:', err));
+      document.removeEventListener('click', initMusic);
+    });
   </script>
 </body>
 </html>
