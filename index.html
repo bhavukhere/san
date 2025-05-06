@@ -63,7 +63,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
     }
 
     .card-front img {
@@ -151,61 +150,30 @@
   <h1>❤️ This is for my Pookie ❤️</h1>
 
   <div class="grid">
-    <!-- All 9 cards -->
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/1.jpg" alt="1"></div>
-        <div class="card-back">Hiii My Cutie Kaleshi, I love you to the moon and back. I have written something for you.</div>
-      </div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/2.jpg" alt="2"></div>
-        <div class="card-back">I will love you for 4 days: Summer, Winter, Autumn and Spring 💌</div>
-      </div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/3.jpg" alt="3"></div>
-        <div class="card-back">Maybe three days: Yesterday, Today, Tomorrow.</div>
-      </div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/4.jpg" alt="4"></div>
-        <div class="card-back">How about two days: Day and Night</div>
-      </div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/5.jpg" alt="5"></div>
-        <div class="card-back">Maybe every single day: Everyday</div>
-      </div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/6.jpg" alt="6"></div>
-        <div class="card-back">The day I hugged you (26th April)... Ahhhh... my girl... for some moment... I forgot all my burdens 💕</div>
-      </div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/7.jpg" alt="7"></div>
-        <div class="card-back">I have started liking you. I love spending time with you.<br>हमें आपसे बेइंतहा मोहब्बत हो गई है ||</div>
-      </div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/8.jpg" alt="8"></div>
-        <div class="card-back">I've heard that after death, the brain lives for 7 minutes to replay best memories. Will you be my 7 minutes?</div>
-      </div>
-    </div>
-    <div class="card" onclick="flipCard(this)">
-      <div class="card-inner">
-        <div class="card-front"><img src="assets/9.jpg" alt="9"></div>
-        <div class="card-back">This is the answer to your reel... Love is knocking again. It's someone who fears losing you, is sure of you, and will hold on to you ✨</div>
-      </div>
-    </div>
+    <!-- 9 cards -->
+    <!-- Use your own image files in assets/ folder -->
+    <script>
+      const messages = [
+        "Hiii My Cutie Kaleshi, I love you to the moon and back. I have written something for you.",
+        "I will love you for 4 days: Summer, Winter, Autumn and Spring 💌",
+        "Maybe three days: Yesterday, Today, Tomorrow.",
+        "How about two days: Day and Night",
+        "Maybe every single day: Everyday",
+        "The day I hugged you (26th April)... Ahhhh... my girl... for some moment... I forgot all my burdens 💕",
+        "I have started liking you. I love spending time with you.<br>हमें आपसे बेइंतहा मोहब्बत हो गई है ||",
+        "I've heard that after death, the brain lives for 7 minutes to replay best memories. Will you be my 7 minutes?",
+        "This is the answer to your reel... Love is knocking again. It's someone who fears losing you, is sure of you, and will hold on to you ✨"
+      ];
+
+      document.write([...Array(9)].map((_, i) => `
+        <div class="card" onclick="flipCard(this)">
+          <div class="card-inner">
+            <div class="card-front"><img src="assets/${i + 1}.jpg" alt="${i + 1}"></div>
+            <div class="card-back">${messages[i]}</div>
+          </div>
+        </div>
+      `).join(""));
+    </script>
   </div>
 
   <div class="question-container">
@@ -218,31 +186,30 @@
   </div>
 
   <div class="video-container" id="videoContainer">
-    <video id="loveVideo" controls autoplay>
-      <source src="video.mp4" type="video/mp4">
+    <video id="loveVideo" muted playsinline controls>
+      <source src="assets/love-video.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
 
   <script>
     function flipCard(card) {
-      card.querySelector('.card-inner').classList.toggle('flipped');
+      const inner = card.querySelector('.card-inner');
+      inner.classList.toggle('flipped');
     }
 
     function moveNoButton(hover) {
       const btn = document.getElementById('noButton');
-      if (hover) {
-        btn.classList.add('move-left');
-      } else {
-        btn.classList.remove('move-left');
-      }
+      if (hover) btn.classList.add('move-left');
+      else btn.classList.remove('move-left');
     }
 
     function showVideo() {
       const videoContainer = document.getElementById('videoContainer');
       const video = document.getElementById('loveVideo');
       videoContainer.style.display = 'flex';
-      video.play();
+      video.load();
+      video.play().catch(err => console.warn('Playback failed:', err));
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
   </script>
